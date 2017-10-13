@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Calendar App</title>
+	<title>Web App</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 	<form>
 		<div>
 			<label>Start Date:</label>
-			<input type="text" name="start-date" id="start-date" placeholder="AAAA-MM-DD">
+			<input type="text" name="start-date" id="start-date" value="2017-10-12" placeholder="AAAA-MM-DD">
 		</div>
 		<br>
 		<div>
 			<label>Number of days:</label>
-			<input type="text" name="number-days" id="number-days" placeholder="Ex.: 10">
+			<input type="text" name="number-days" id="number-days" value="4" placeholder="Ex.: 10">
 		</div>
 		<br>
 		<div>
 			<label>Country Code:</label>
-			<input type="text" name="country-code" id="country-code" placeholder="Ex.: US">
+			<input type="text" name="country-code" id="country-code" value="US" placeholder="Ex.: US">
 		</div>
 		<br>
 		<div>
-			<button type="button" id="button-submit">Render</button>
+			<button type="button" id="button-submit">Go</button>
 		</div>
 	</form>
 	<table id="calendar">
