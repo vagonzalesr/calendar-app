@@ -37,3 +37,8 @@ table#calendar td.invalid {
 table#calendar td.weekend {
 	background-color: #F1FF00;
 }
+
+table#calendar td.holiday {
+	background-color: #E77406;
+}
+

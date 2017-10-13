@@ -21,6 +21,7 @@ var main = {
 	},
 	setListeners: function() {
 		var self = this;
+
 		self.dom.buttonSubmit.addEventListener('click', function() {
 			var date = self.dom.startDate.value.split('-');
 			self.data.startDate = new Date(parseInt(date[0]),parseInt(date[1]),parseInt(date[2]));
@@ -92,11 +93,46 @@ var main = {
 					if (date.getDay() == 0 || date.getDay() == 6) {
 						newCell.classList.add('weekend');
 					}
+					var holidays = self.getHolidays(date);
+					holidays.forEach(function(holiday) {
+						var p = document.createElement('p');
+						p.innerText = '*' + holiday.name;
+						newCell.appendChild(p);
+					});
+					if (holidays.length > 0) {
+						newCell.classList.add('holiday');
+					}
 				} else {
 					newCell.classList.add('invalid');
 				}
 			});
 		});
+	},
+	getHolidays: function (date) {
+		var self = this;
+		
+		var key = '3e0455d2-1d11-429a-a92e-5c9f6ae2451a',
+			code = self.data.countryCode,
+			year = date.getFullYear().toString(),
+			month = (date.getMonth() + 1).toString(),
+			day = date.getDate().toString()
+		var url = 'https://holidayapi.com/v1/holidays?key=' + key + '&country=' + code + '&year=' + year + '&month=' + month + '&day=' + day + '';
+
+		try {
+			var request = new XMLHttpRequest();
+			request.open('GET', url, false); // false for synchronous request
+			request.send(null);
+
+			if (request.status === 200) {
+				var result = JSON.parse(request.responseText);
+				if (result.status === 200) {
+					return result.holidays;
+				}			 	
+			}
+		}
+		catch(err) {
+			return [];
+		}				
 	}
 };
 
